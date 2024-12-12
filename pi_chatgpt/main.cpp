@@ -5,18 +5,36 @@
 #include <mutex>
 #include <chrono> // Biblioteka do pomiaru czasu
 
-// Mutex do synchronizacji dostępu do sumy
+/**
+ * @file pi_integration.cpp
+ * @brief Program obliczający wartość liczby PI metodą prostokątów z użyciem wielowątkowości.
+ */
+
+ // Mutex do synchronizacji dostępu do sumy
 std::mutex mtx;
 
 double total_sum = 0.0; // Globalna suma
 
-// Funkcja reprezentująca sqrt(1 - x^2)
-// Jest to funkcja podcałkowa używana do obliczania liczby PI (z wzoru całki).
+/**
+ * @brief Funkcja reprezentująca sqrt(1 - x^2).
+ *
+ * Funkcja podcałkowa używana do obliczania liczby PI na podstawie całki oznaczonej.
+ * @param x Wartość wejściowa.
+ * @return Wartość funkcji sqrt(1 - x^2).
+ */
 double func(double x) {
     return sqrt(1.0 - x * x);
 }
 
-// Funkcja obliczająca sumę dla danego przedziału wątku
+/**
+ * @brief Funkcja obliczająca sumę dla danego przedziału wątku.
+ *
+ * Każdy wątek oblicza część sumy całkowej dla zadanego przedziału iteracji.
+ * @param start Indeks początkowy.
+ * @param end Indeks końcowy.
+ * @param h Szerokość każdego prostokąta.
+ * @param a Początek przedziału całkowania.
+ */
 void calculate_partial_sum(int start, int end, double h, double a) {
     double local_sum = 0.0;
     for (int i = start; i < end; ++i) {
@@ -29,8 +47,14 @@ void calculate_partial_sum(int start, int end, double h, double a) {
     total_sum += local_sum;
 }
 
-// Funkcja obliczająca przybliżoną wartość liczby PI za pomocą metody prostokątów
-// z użyciem wielowątkowości
+/**
+ * @brief Funkcja obliczająca wartość liczby PI za pomocą metody prostokątów z wielowątkowością.
+ *
+ * Funkcja dzieli obliczenia na wiele wątków, aby przyspieszyć proces.
+ * @param n Liczba prostokątów (dokładność obliczeń).
+ * @param num_threads Liczba wątków używanych do obliczeń.
+ * @return Przybliżona wartość liczby PI.
+ */
 double calculate_pi(int n, int num_threads) {
     double a = 0.0; // Początek przedziału całkowania
     double b = 1.0; // Koniec przedziału całkowania
@@ -54,6 +78,12 @@ double calculate_pi(int n, int num_threads) {
     return 4 * h * total_sum; // Wynik końcowy: 4 * h * suma prostokątów
 }
 
+/**
+ * @brief Funkcja główna programu.
+ *
+ * Pobiera dane od użytkownika, wykonuje obliczenia liczby PI i wyświetla wyniki.
+ * @return Kod zakończenia programu.
+ */
 int main() {
     int n; // Liczba prostokątów
     int num_threads; // Liczba wątków
