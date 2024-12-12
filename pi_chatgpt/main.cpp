@@ -3,6 +3,7 @@
 #include <thread>
 #include <vector>
 #include <mutex>
+#include <chrono> // Biblioteka do pomiaru czasu
 
 // Mutex do synchronizacji dostępu do sumy
 std::mutex mtx;
@@ -69,11 +70,21 @@ int main() {
         return 1;
     }
 
+    // Pomiar czasu rozpoczęcia
+    auto start_time = std::chrono::high_resolution_clock::now();
+
     double pi = calculate_pi(n, num_threads); // Obliczenie liczby PI
+
+    // Pomiar czasu zakończenia
+    auto end_time = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time);
 
     // Wyświetlenie wyniku z 15 miejscami po przecinku bez użycia iomanip
     std::cout << "Przybliżona wartość liczby PI: ";
     printf("%.15f\n", pi);
+
+    // Wyświetlenie czasu obliczeń
+    std::cout << "Czas obliczeń: " << duration.count() << " ms" << std::endl;
 
     return 0;
 }
