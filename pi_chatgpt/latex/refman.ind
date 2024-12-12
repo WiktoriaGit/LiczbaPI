@@ -1,0 +1,23 @@
+\begin{theindex}
+
+  \item {calculate\_partial\_sum}
+    \subitem {main.cpp}, \hyperpage{4}
+  \item {calculate\_pi}
+    \subitem {main.cpp}, \hyperpage{4}
+
+  \indexspace
+
+  \item {func}
+    \subitem {main.cpp}, \hyperpage{4}
+
+  \indexspace
+
+  \item {main}
+    \subitem {main.cpp}, \hyperpage{5}
+  \item {main.cpp}, \hyperpage{3}
+    \subitem {calculate\_partial\_sum}, \hyperpage{4}
+    \subitem {calculate\_pi}, \hyperpage{4}
+    \subitem {func}, \hyperpage{4}
+    \subitem {main}, \hyperpage{5}
+
+\end{theindex}

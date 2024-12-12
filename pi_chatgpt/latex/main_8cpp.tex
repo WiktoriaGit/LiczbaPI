@@ -1,0 +1,113 @@
+\doxysection{Dokumentacja pliku main.\+cpp}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{main.cpp@{main.cpp}}
+
+
+Program obliczający wartość liczby PI metodą prostokątów z użyciem wielowątkowości.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$mutex$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+\doxysubsubsection*{Funkcje}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{main_8cpp_aba60904b56a5dce7e291d2f7d62e9782}{func}} (double x)
+\begin{DoxyCompactList}\small\item\em Funkcja reprezentująca sqrt(1 -\/ x\texorpdfstring{$^\wedge$}{\string^}2). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8cpp_a781135709476d095fa974feef55e9d27}{calculate\+\_\+partial\+\_\+sum}} (long long start, long long end, double h, double a)
+\begin{DoxyCompactList}\small\item\em Funkcja obliczająca sumę dla danego przedziału wątku. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{main_8cpp_a6745fc69966d70a90f91c157eebe240c}{calculate\+\_\+pi}} (long long n, int num\+\_\+threads)
+\begin{DoxyCompactList}\small\item\em Funkcja obliczająca wartość liczby PI za pomocą metody prostokątów z wielowątkowością. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\begin{DoxyCompactList}\small\item\em Funkcja główna programu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Zmienne}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{main_8cpp_ad5e0dbd36f0d71fce9b00b7f991b2f38}\label{main_8cpp_ad5e0dbd36f0d71fce9b00b7f991b2f38} 
+std\+::mutex {\bfseries mtx}
+\item 
+\Hypertarget{main_8cpp_a7eea8261bfb86db9d81a449f52528b3a}\label{main_8cpp_a7eea8261bfb86db9d81a449f52528b3a} 
+double {\bfseries total\+\_\+sum} = 0.\+0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Opis szczegółowy}
+Program obliczający wartość liczby PI metodą prostokątów z użyciem wielowątkowości. 
+
+
+
+\doxysubsection{Dokumentacja funkcji}
+\Hypertarget{main_8cpp_a781135709476d095fa974feef55e9d27}\index{main.cpp@{main.cpp}!calculate\_partial\_sum@{calculate\_partial\_sum}}
+\index{calculate\_partial\_sum@{calculate\_partial\_sum}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{calculate\_partial\_sum()}{calculate\_partial\_sum()}}
+{\footnotesize\ttfamily \label{main_8cpp_a781135709476d095fa974feef55e9d27} 
+void calculate\+\_\+partial\+\_\+sum (\begin{DoxyParamCaption}\item[{long long}]{start}{, }\item[{long long}]{end}{, }\item[{double}]{h}{, }\item[{double}]{a}{}\end{DoxyParamCaption})}
+
+
+
+Funkcja obliczająca sumę dla danego przedziału wątku. 
+
+Każdy wątek oblicza część sumy całkowej dla zadanego przedziału iteracji. 
+\begin{DoxyParams}{Parametry}
+{\em start} & Indeks początkowy. \\
+\hline
+{\em end} & Indeks końcowy. \\
+\hline
+{\em h} & Szerokość każdego prostokąta. \\
+\hline
+{\em a} & Początek przedziału całkowania. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8cpp_a6745fc69966d70a90f91c157eebe240c}\index{main.cpp@{main.cpp}!calculate\_pi@{calculate\_pi}}
+\index{calculate\_pi@{calculate\_pi}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{calculate\_pi()}{calculate\_pi()}}
+{\footnotesize\ttfamily \label{main_8cpp_a6745fc69966d70a90f91c157eebe240c} 
+double calculate\+\_\+pi (\begin{DoxyParamCaption}\item[{long long}]{n}{, }\item[{int}]{num\+\_\+threads}{}\end{DoxyParamCaption})}
+
+
+
+Funkcja obliczająca wartość liczby PI za pomocą metody prostokątów z wielowątkowością. 
+
+Funkcja dzieli obliczenia na wiele wątków, aby przyspieszyć proces. 
+\begin{DoxyParams}{Parametry}
+{\em n} & Liczba prostokątów (dokładność obliczeń). \\
+\hline
+{\em num\+\_\+threads} & Liczba wątków używanych do obliczeń. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Zwraca}
+Przybliżona wartość liczby PI. 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_aba60904b56a5dce7e291d2f7d62e9782}\index{main.cpp@{main.cpp}!func@{func}}
+\index{func@{func}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{func()}{func()}}
+{\footnotesize\ttfamily \label{main_8cpp_aba60904b56a5dce7e291d2f7d62e9782} 
+double func (\begin{DoxyParamCaption}\item[{double}]{x}{}\end{DoxyParamCaption})}
+
+
+
+Funkcja reprezentująca sqrt(1 -\/ x\texorpdfstring{$^\wedge$}{\string^}2). 
+
+Funkcja podcałkowa używana do obliczania liczby PI na podstawie całki oznaczonej. 
+\begin{DoxyParams}{Parametry}
+{\em x} & Wartość wejściowa. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Zwraca}
+Wartość funkcji sqrt(1 -\/ x\texorpdfstring{$^\wedge$}{\string^}2). 
+\end{DoxyReturn}
+\Hypertarget{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Funkcja główna programu. 
+
+Pobiera dane od użytkownika, wykonuje obliczenia liczby PI i wyświetla wyniki. \begin{DoxyReturn}{Zwraca}
+Kod zakończenia programu. 
+\end{DoxyReturn}
