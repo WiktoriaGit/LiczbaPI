@@ -6,7 +6,7 @@
 #include <chrono> // Biblioteka do pomiaru czasu
 
 /**
- * @file pi_integration.cpp
+ * @file main.cpp
  * @brief Program obliczający wartość liczby PI metodą prostokątów z użyciem wielowątkowości.
  */
 
