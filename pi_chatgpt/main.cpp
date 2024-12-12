@@ -35,9 +35,9 @@ double func(double x) {
  * @param h Szerokość każdego prostokąta.
  * @param a Początek przedziału całkowania.
  */
-void calculate_partial_sum(int start, int end, double h, double a) {
+void calculate_partial_sum(long long start, long long end, double h, double a) {
     double local_sum = 0.0;
-    for (int i = start; i < end; ++i) {
+    for (long long i = start; i < end; ++i) {
         double x = a + i * h;
         local_sum += func(x);
     }
@@ -55,18 +55,18 @@ void calculate_partial_sum(int start, int end, double h, double a) {
  * @param num_threads Liczba wątków używanych do obliczeń.
  * @return Przybliżona wartość liczby PI.
  */
-double calculate_pi(int n, int num_threads) {
+double calculate_pi(long long n, int num_threads) {
     double a = 0.0; // Początek przedziału całkowania
     double b = 1.0; // Koniec przedziału całkowania
     double h = (b - a) / n; // Szerokość każdego prostokąta
 
     // Ustalenie zakresu dla każdego wątku
-    int chunk_size = n / num_threads;
+    long long chunk_size = n / num_threads;
     std::vector<std::thread> threads;
 
     for (int t = 0; t < num_threads; ++t) {
-        int start = t * chunk_size;
-        int end = (t == num_threads - 1) ? n : start + chunk_size;
+        long long start = t * chunk_size;
+        long long end = (t == num_threads - 1) ? n : start + chunk_size;
         threads.emplace_back(calculate_partial_sum, start, end, h, a);
     }
 
@@ -85,18 +85,18 @@ double calculate_pi(int n, int num_threads) {
  * @return Kod zakończenia programu.
  */
 int main() {
-    int n; // Liczba prostokątów
+    long long n; // Liczba prostokątów
     int num_threads; // Liczba wątków
 
-    std::cout << "Podaj liczbe prostokatow (im wieksza liczba, tym wieksza dokladnosc): ";
+    std::cout << "Podaj liczbę prostokątów (im większa liczba, tym większa dokładność): ";
     std::cin >> n;
 
-    std::cout << "Podaj liczbę watkow: ";
+    std::cout << "Podaj liczbę wątków: ";
     std::cin >> num_threads;
 
     // Sprawdzenie poprawności liczby prostokątów
     if (n <= 0 || num_threads <= 0) {
-        std::cerr << "Liczba prostokatow i liczba watkow musza byc wieksze od zera!" << std::endl;
+        std::cerr << "Liczba prostokątów i liczba wątków muszą być większe od zera!" << std::endl;
         return 1;
     }
 
@@ -110,11 +110,11 @@ int main() {
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time);
 
     // Wyświetlenie wyniku z 15 miejscami po przecinku bez użycia iomanip
-    std::cout << "Przyblizona wartosc liczby PI: ";
+    std::cout << "Przybliżona wartość liczby PI: ";
     printf("%.15f\n", pi);
 
     // Wyświetlenie czasu obliczeń
-    std::cout << "Czas obliczen: " << duration.count() << " ms" << std::endl;
+    std::cout << "Czas obliczeń: " << duration.count() << " ms" << std::endl;
 
     return 0;
 }
