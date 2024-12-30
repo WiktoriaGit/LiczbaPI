@@ -88,7 +88,7 @@ int main() {
     long long n; // Liczba prostokątów
     int num_threads; // Liczba wątków
 
-    std::cout << "Podaj liczbę prostokatow (im wieksza liczba, tym wieksza dokladnosc): ";
+    std::cout << "Podaj liczbe prostokatow (im wieksza liczba, tym wieksza dokladnosc): ";
     std::cin >> n;
 
     std::cout << "Podaj liczbę wątków: ";
@@ -96,7 +96,7 @@ int main() {
 
     // Sprawdzenie poprawności liczby prostokątów
     if (n <= 0 || num_threads <= 0) {
-        std::cerr << "Liczba prostokatów i liczba watkow musza byc wieksze od zera!" << std::endl;
+        std::cerr << "Liczba prostokatow i liczba watkow musza byc wieksze od zera!" << std::endl;
         return 1;
     }
 
@@ -110,7 +110,7 @@ int main() {
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time);
 
     // Wyświetlenie wyniku z 15 miejscami po przecinku bez użycia iomanip
-    std::cout << "Przyblizona wartość liczby PI: ";
+    std::cout << "Przyblizona wartosc liczby PI: ";
     printf("%.15f\n", pi);
 
     // Wyświetlenie czasu obliczeń
